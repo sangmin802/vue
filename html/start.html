@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 개발버전 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <!-- 상용버전 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{message}}
+  </div>
+  <div id="app2">
+    <span v-bind:title="message">
+      마우스를 올리면 바인딩된 message를 볼 수 있습니다. 
+    </span>
+  </div>
+  <div id="app3">
+    <p v-if="seen">이제 나를 볼 수 있어요</p>
+  </div>
+  <div id="app4">
+    <ol>
+      <li v-for="todo in todos">
+        {{todo.text}}
+      </li>
+    </ol>
+  </div>
+  <div id="app5">
+    <p v-on:mouseover="alertMessage">{{message}}</p>
+    <div>
+      <p v-if="seen">보이네요</p>
+      <button v-on:click="seen = !seen">토글버튼</button>
+    </div>
+  </div>
+  <div id="app6">
+    <form v-on:submit="submit">
+      <input v-model="form.message" type="text">
+      <input type="submit" value="뭐라썼게?">
+    </form>
+    <p>{{message}}</p>
+  </div>
+  <div id="app7">
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:text="item.text"
+      v-bind:id="item.id"
+      v-bind:key="item.id"
+    ></todo-item>
+  </div>
+  <script src="../js/start.js"></script>
+</body>
+</html>
