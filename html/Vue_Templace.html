@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <title>Document</title>
+</head>
+<body>
+  <div id="Interpolation">
+    <span>문자열 : {{string}}</span>
+    <p>중괄호 사용 : {{HTML}}</p>
+    <p>v-html 사용 : <span v-html="HTML"></span></p>
+    <p v-bind:class="bindProp">v-bind로 태그의 속성들 지정</p>
+    <p>JavaScript를 포함한 중괄호1 {{count+1}}</p>
+    <p>JavaScript를 포함한 중괄호2 {{ok ? 'True' : 'False'}}</p>
+    <p v-bind:class="'list-'+count">JavaScript를 포함한 중괄호3 클래스변수</p>
+    <p>{{arr.find(res => res===3)}}</p>
+  </div>
+  <div id="Directive">
+    <p v-if="seen">보여요</p>
+    <p v-on:mouseover="seen = !seen">마우스를 올려보세요</p>
+    <p><a v-bind:href="naverUrl" target="_blank">네이버가기</a></p>
+    <p><a v-bind:[url]="naverUrl" target="_blank">네이버가기</a></p>
+    <form v-on:submit.prevent>
+      <input type="submit" value="제출하지만, 막았음">
+    </form>
+  </div>
+  <script src="../js/Vue_Template.js"></script>
+</body>
+</html>
