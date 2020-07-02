@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="Computed">
+    <p>원본 메시지 : {{message}}</p>
+    <p>역순 메시지 : {{reversedMessage}}</p>
+    <!-- <p>역순 메시지 : {{reversedMessage()}}</p> -->
+  </div>
+  <div id="Watch">
+    <p>
+      입력하기
+      <input type="text" v-model="question">
+    </p>
+    <p>{{answer}}</p>
+  </div>
+  <div id="Computed_vs_Watch">
+    {{fullName}}
+  </div>
+  <script src="../js/Vue_Computed&Watch.js"></script>
+</body>
+</html>
