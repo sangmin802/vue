@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <title>Document</title>
+</head>
+<body>
+  <div id="v-for">
+    <div v-for="({message}, index) of items">
+      {{index}}_{{message}}
+    </div>
+  </div>
+  <br>
+  <div id="v-for-object">
+    <div v-for="(value, key, index) in object">
+      {{index}}. {{key}} : {{value}}
+    </div>
+  </div>
+  <br>
+  <div id="maintaining-state">
+    <div v-for="({id, name, classValue}) of arr" :user_id="id" :key="id">
+      name : {{name}} class : {{classValue}}
+    </div>
+    <button @click="reverse">reverse</button>
+    <button @click="mainChar">본캐 찾기</button>
+  </div>
+  <br>
+  <div id="computedArr">
+  <div v-for="{id, name} of onSale" :key="id">
+        {{id}}. {{name}}
+    </div>
+    <div>
+      <span v-for="n of 10">{{n}}</span>
+    </div>
+  </div>
+  <br>
+  <div id="v-for_v-if">
+    <div v-for="todo of todos" v-if="!todo.complete">{{todo.id}}. {{todo.text}}</div>
+  </div>
+  <br>
+  <div id="v-for_component">
+    <my-component v-for="({id, name}, index) of items"
+      :key="id"
+      :id="id"
+      :name="name"
+    ></my-component>
+  </div>
+  <br>
+  <h1>TodoList</h1>
+  <div id="todoList">
+    <form @submit.prevent="add">
+      <input type="text" v-model="newTodo" placeholder="할 일을 적으세요">
+      <input type="submit" value="등록하기">
+    </form>
+    <ul>
+      <li
+        is="Todo"
+        v-for="({id, text}, index) of todoList"
+        :remove="remove"
+        :key="id"
+        :id="id"
+        :text="text"
+      ></li>
+    </ul>
+  </div>
+  <script src="../js/Vue_for(list_rendering).js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <title>Document</title>
+  <style>
+    .active {
+      font-weight : bold;
+    }
+    .text_danger {
+      color : tomato;
+    }
+  </style>
+</head>
+<body>
+  <div id="objClass" >
+    <p class="static" :class="{active : isActive, text_danger : hasError}">인라인 동적 class</p>
+    <p class="static" :class="instanceClass">인스턴스 data 동적 class</p>
+    <p class="static" :class="computedClass">computed 동적 class</p>
+  </div>
+  <div id="arrClass">
+    <p :class="[acitveClass, errorClass]">배열 class</p>
+    <p :class="[isActive ? activeClass : '', errorClass]">배열 삼항 조건부 class</p>
+    <p :class="[{active : isActive}, errorClass]">배열 내 객체구문 class</p>
+  </div>
+  <div id="componentClass">
+    <my-component :class="{active : isActive}"></my-component>
+  </div>
+  <div id="inlineStyle">
+    <p :style="{color : activeColor, fontSize : fontSize+'px'}">인라인 스타일 바인딩</p>
+    <p :style="styleObj">data 객체 스타일 바인딩</p>
+    <div :style="[styleObj, styleObj2]">data 배열 스타일 바인딩</div>
+  </div>
+  <script src="../js/Vue_Class&Style.js"></script>
+</body>
+</html>

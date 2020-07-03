@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <title>Document</title>
+</head>
+<body>
+  <div id="ifElse">
+    <template v-if="ok">Yes</template>
+    <template v-else>No</template>
+  </div>
+  <div id="ifElseIf">
+    <button @click="menu = 1">menu1</button>
+    <button @click="menu = 2">menu2</button>
+    <button @click="menu = 3">menu3</button>
+    <template v-if="menu === 1">
+      <h1>Menu1</h1>
+      <p>paragraph1</p>
+      <p>paragraph2</p>
+    </template>
+    <template v-else-if="menu === 2">
+      <h1>Menu2</h1>
+      <p>paragraph1</p>
+      <p>paragraph2</p>
+    </template>
+    <template v-else="menu === 3">
+      <h1>Menu3</h1>
+      <p>paragraph1</p>
+      <p>paragraph2</p>
+    </template>
+  </div>
+  <div id="key">
+    <template v-if="loginType === 'username'">
+      <span>사용자 이름</span>
+      <input type="text" placeholder="사용자 이름을 입력하세요" key="username">
+    </template>
+    <template v-else>
+      <span>이메일</span>
+      <input type="text" placeholder="이메일 주소를 입력하세요" key="email">
+    </template>
+    <p>
+      <button @click="loginType = loginType === 'username' ? null : 'username'">로그인 유형 변경</button>
+    </p>
+  </div>
+  <div id="vshow">
+    <h1 v-show="ok">안녕하세요!</h1>
+  </div>
+  <script src="../js/Vue_if.js"></script>
+</body>
+</html>
