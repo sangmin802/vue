@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <style>
+    .tomato {
+      color : tomato;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div id="component1">
+    <my-component></my-component>
+  </div>
+  <div id="component2">
+    <my-component></my-component>
+  </div>
+  <ul id="component3">
+    <li is="my-component"></li>
+  </ul>
+  <div id="component4">
+    <my-component></my-component>
+  </div>
+  <div id="component5">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+  </div>
+  <div id="props1">
+    <props 
+    :message="message"
+    :obj="obj"
+    ></props>
+  </div>
+  <div id="props2">
+    <props 
+    :num="num"
+    ></props>
+  </div>
+  <div id="props3">
+    <props 
+      :propa="propA"
+      :propb="propB"
+      :propc="propC"
+      :propd="propD"
+      :prope="propE"
+      :propf="propF"
+    ></props>
+  </div>
+  <div id="customEvent">
+    <p>{{total}}</p>
+    <button-counter
+      @increment="incrementTotal"
+      @click.native="nativeEvent"
+      :num="total"
+    ></button-counter>
+    <button-counter
+      @increment="incrementTotal"
+      @click.native="nativeEvent"
+      :num="total"
+    ></button-counter>
+  </div>
+  <script src="../js/Vue_component.js"></script>
+</body>
+</html>

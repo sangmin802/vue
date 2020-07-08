@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <title>Document</title>
+</head>
+<body>
+  <div id="text">
+    <input type="text" v-model="text">
+    <p>메시지 : {{text}}</p>
+  </div>
+  <div id="textarea">
+    <textarea v-model="textarea"></textarea>
+    <p>메시지 : {{textarea}}</p>
+  </div>
+  <div id="checkbox">
+    <input type="checkbox" id="check" v-model="checked">
+    <label for="check">{{ checked }}</label>
+    <br>
+    <input type="checkbox" id="sangmin" value="상민" v-model="checkedNames">
+    <label for="sangmin">상민</label>
+    <input type="checkbox" id="jichan" value="지찬" v-model="checkedNames">
+    <label for="jichan">지찬</label>
+    <input type="checkbox" id="wonbin" value="원빈" v-model="checkedNames">
+    <label for="wonbin">원빈</label>
+    <p>{{checkedNames.join(', ')}}</p>
+  </div>
+  <br>
+  <div id="radio">
+    <input type="radio" id="45fps" value="45" v-model="FPS">
+    <label for="45fps">45FPS</label>
+    <input type="radio" id="60fps" value="60" v-model="FPS">
+    <label for="60fps">60FPS</label>
+    <p>FPS : {{FPS}}</p>
+  </div>
+  <div id="select">
+    <select v-model="selected">
+      <option disabled>Please select one</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <p>Selected : {{selected}}</p>
+    <select v-model="selectedArr" multiple>
+      <option v-for="option of options">
+        {{option}}
+      </option>
+    </select>
+    <p>Selected : {{selectedArr.join(', ')}}</p>
+  </div>
+  <div id="binding">
+    <input type="radio" v-model="radioValue" :value="A">
+    <p>radio 값 : {{radioValue}}</p>
+    <input type="checkbox" v-model="boolean" true-value="하겠습니다" false-value="안하겠습니다">
+    <p>checkbox 값 : {{boolean}}</p>
+    <select v-model="selected">
+      <option :value="upperLower">ABC</option>
+    </select>
+    <p>selected 값 : {{selected}}</p>
+  </div>
+  <div id="sub">
+    <input type="text" v-model.lazy.trim="msg" @change="change">
+    <p>msg : {{msg}}</p>
+    <input type="number" v-model.number="num">
+    <p>type of : {{typeof num}}</p>
+  </div>
+  <script src="../js/Vue_form.js"></script>
+</body>
+</html>
