@@ -63,6 +63,66 @@
       :num="total"
     ></button-counter>
   </div>
+  <div id="sync">
+    {{text}}
+    <child
+      :text.sync="text"
+    ></child>
+  </div>
+  <div id="v-model1">
+    <custom-input
+      v-model="text"
+    ></custom-input>
+    {{text}}
+  </div>
+  <div id="v-model2">
+    <checkbox
+      v-model="boolean"
+    >
+    </checkbox>
+    {{boolcheck}}
+  </div>
+  <div id="exportmethod">
+    <button @click="exportMethod">이벤트 내보내기</button>
+  </div>
+  <div id="importmethod">
+  </div>
+  <div id="slot1">
+    <h1>부모 컴포넌트 제목</h1>
+    <my-component>
+      <p v-if="isShow">원본 컨텐츠</p>
+      <p v-if="isShow">원본 중 추가 컨텐츠</p>
+    </my-component>
+  </div>
+  <div id="slot2">
+    <my-component>
+      <h1 slot="title">여기에 페이지 제목 위치</h1>
+      <div slot="main">
+        <p>메인 컨텐츠</p>
+        <p>메인 컨텐츠</p>
+        <p>메인 컨텐츠</p>
+      </div>
+      <h2 slot="banner">중간광고</h2>
+      <p>메인 컨텐츠</p>
+      <p>메인 컨텐츠</p>
+      <h2 slot="footer">여기에 연락처 정보</h2>
+    </my-component>
+  </div>
+  <div id="slot3">
+    <my-list
+      :items="arr"
+    >
+      <li
+        slot="item"
+        slot-scope="{item : {id, text}}"
+      >
+        {{id}}, {{text}}
+      </li>
+    </my-list>
+  </div>
+  <div id="activeComponent">
+    <component :is="currentComp"></component>
+  </div>
   <script src="../js/Vue_component.js"></script>
 </body>
 </html>
