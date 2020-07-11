@@ -96,28 +96,23 @@
   </div>
   <div id="slot2">
     <my-component>
-      <h1 slot="title">여기에 페이지 제목 위치</h1>
-      <div slot="main">
+      <template #title>
+        <h1>여기에 페이지 제목 위치</h1>
+      </template>
+      <template #main>
         <p>메인 컨텐츠</p>
         <p>메인 컨텐츠</p>
         <p>메인 컨텐츠</p>
-      </div>
-      <h2 slot="banner">중간광고</h2>
-      <p>메인 컨텐츠</p>
-      <p>메인 컨텐츠</p>
-      <h2 slot="footer">여기에 연락처 정보</h2>
+      </template>
     </my-component>
   </div>
   <div id="slot3">
     <my-list
       :items="arr"
     >
-      <li
-        slot="item"
-        slot-scope="{item : {id, text}}"
-      >
-        {{id}}, {{text}}
-      </li>
+      <template #item="{item : {id, text}}">
+        <li>{{id}}, {{text}}</li>
+      </template>
     </my-list>
   </div>
   <div id="activeComponent">

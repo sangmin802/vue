@@ -267,7 +267,7 @@ new Vue({
       template : `
         <input type="text"
           :value="value" 
-          @input="inputEvent($event.target.value)"
+          @input="$emit('input',$event.target.value)"
         >
       `,
       methods : {
@@ -357,6 +357,9 @@ new Vue({
 //       쉽게 정리.
 //       컴포넌트 template에서 <slot>태그는 자신의 부모영역에서 컴포넌트 태그 내부에 컨텐츠를 만들었을 때 해당 컨텐츠들을 유지하기 위해서 존재하는 태그이다.
 //       만약, <slot>태그가 없다면, 부모영역에서 생성된 컨텐츠들은 제거되고, <slot>태그는 있는데, 부모영역에서 생성된 컨텐츠들이 없다면 해당 컴포넌트의 템플릿 내부 <slot>태그의 기본값이 노출된다.(v-if의 경우도 동일 적용됨. 단, v-show는 display : none의 형식이므로, 모두 노출안됨. 슬롯은 부모영역의 컨텐츠가 존재하기때문에 안보이고, 컨텐츠는 그냥 스타일상 안보이기때문)
+
+// 2.6 업데이트로 slot, slot-scope가 삭제되고 v-slot:(#)으로 통합되었다.
+// 해당 속성은 꼭 template 안에 있어야 하며, v-slot:(슬롯name)="slot-scope된 값" 이렇게 한번에 입력할 수 있게 되었다.
 new Vue({
   el : '#slot1',
   data : {

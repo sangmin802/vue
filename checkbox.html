@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .basic {
+      width : 100px;
+      height : 100px;
+      background : #666666;
+      color : white;
+      margin-top : 10px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div id="selected">
+    <input-check :data="video">
+      <div slot="inputWrap" slot-scope="{item, item : {name}, id}">
+        <input type="checkbox" slot="videoInput" :id="name" v-model="selected" :value="name">
+        <label :for="name" slot="videoLabel">{{name}}</label>
+      </div>
+    </input-check>
+    <div v-if="videoLimit2.length !== 0">
+      <!-- 하나라도 차면 옵션창 출력 -->
+      <!-- 각기 다른 설정 -->
+      <div v-for="(video, index) of videoLimit2">
+        {{video}}
+        <!-- ref도 v-bind를 통해 동적으로 가능함 -->
+        <br>
+        초<input type="number" v-model="optionWrap['option'+index].sec">
+        <br>
+        FPS<input type="number" v-model="optionWrap['option'+index].fps">
+        <br>
+      </div>
+      <button @click="save">gif변환하기</button>
+    </div>
+  </div>
+  <script src="./checkbox.js"></script>
+</body>
+</html>

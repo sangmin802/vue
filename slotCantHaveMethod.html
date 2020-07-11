@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <!-- component화 할 때, slot은 메소드를 직접적으로 가질 수 없기 때문에, 부모의 영역에서 해당 slot으로 대체되는 부분에 메소드를 추가해서 사용해야한다. -->
+  <!-- 그런데 여기서 input은 하위 컴포넌트의 slot으로 대체되기때문에, v-model은 먹히지 않으며, v-model을 풀어서사용한 :value와, @input이벤트를 사용해야한다.(사실상 이 둘은 자식컴포넌트에 있기때문에 이벤트방출을 해줘야 하는 것) -->
+  <div id="test">
+    <loop
+      :people="people"
+    >
+      <template
+        #input="{person : {id, uname, desc}}"
+      >
+        <input type="text" :value="uname"
+          @input="change(id, $event.target.value, 'uname')"
+        >
+        <input type="text" :value="desc"
+          @input="change(id, $event.target.value, 'desc')"
+        >
+      </template>
+    </loop>
+    <p>
+      {{people[0].uname}}, 
+      {{people[0].desc}}
+    </p>
+    <p>
+      {{people[1].uname}}, 
+      {{people[1].desc}}
+    </p>
+    <p>
+      {{people[2].uname}}, 
+      {{people[2].desc}}
+    </p>
+    <p>
+      {{people[3].uname}}, 
+      {{people[3].desc}}
+    </p>
+  </div>
+  <script>
+    new Vue({
+      el : '#test',
+      data : {
+        people : [
+          {id : 1, uname : '김원빈', desc : '김원빈입니다.'},
+          {id : 2, uname : '정지찬', desc : '정지찬입니다.'},
+          {id : 3, uname : '김준성', desc : '김준성입니다.'},
+          {id : 4, uname : '유태균', desc : '유태균입니다.'}
+        ]
+      },
+      methods : {
+        change(id, v, type){
+          [...this.people].map(res => {
+            if(res.id === id){
+              res[type]=v
+            }
+          })
+        },
+      },
+      components : {
+        loop : {
+          props : ['people'],
+          template : `
+            <div>
+              <slot v-for="person of people" :person="person" name="input">
+              </slot>
+            </div>
+          `,
+        }
+      }
+    })
+  </script>
+</body>
+</html>
