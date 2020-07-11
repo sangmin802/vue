@@ -72,6 +72,14 @@ new Vue({
         </slot>
       </div>
       `,
+    },
+    options : {
+      props : ['data'],
+      template : `
+        <div>
+          <slot name="optionwrap" v-for="(video, index) of data" :index="index" :video="video"></slot>
+        </div>
+      `
     }
   }
 })

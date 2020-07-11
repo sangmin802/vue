@@ -26,17 +26,17 @@
       </template>
     </input-check>
     <div v-if="videoLimit2.length !== 0">
-      <!-- 하나라도 차면 옵션창 출력 -->
-      <!-- 각기 다른 설정 -->
-      <div v-for="(video, index) of videoLimit2">
-        {{video}}
-        <!-- ref도 v-bind를 통해 동적으로 가능함 -->
-        <br>
-        초<input type="number" v-model="optionWrap['option'+index].sec">
-        <br>
-        FPS<input type="number" v-model="optionWrap['option'+index].fps">
-        <br>
-      </div>
+      <options :data="videoLimit2">
+        <template #optionwrap="{index, video}">
+          <div>
+            {{video}}
+            <br>
+            초<input type="number" v-model="optionWrap['option'+index].sec">
+            <br>
+            FPS<input type="number" v-model="optionWrap['option'+index].fps">
+          </div>
+        </template>
+      </options>
       <button @click="save">gif변환하기</button>
     </div>
   </div>

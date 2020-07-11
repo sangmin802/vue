@@ -13,6 +13,14 @@
 
   <!-- slot 쓰면 이벤트가 등록이 안되서 부모의 영역으로 와 이벤트 및 동적바인딩을 해주고, slot 안쓰면 컴포넌트의 템플릿 내부 태그에서 이벤트를 실행시킬 수 있으므로 v-model를 사용해 값을 전달하는것같은데
   솔직히 정확히 잘 모르겠음 짜증난다. -->
+
+  <!-- 두개 비교해보자 -->
+  <!-- scope 정의를 통해 각 DOM들이 형성되는 시기와 참조할 수 있는 값들을 생각해보자 -->
+
+  <!-- slot, slot-scope를 활용한 양방향 바인딩된 form 반복 -->
+
+
+  <!-- 20200711 23:34 checkbox도 그렇고, 지금 여기에서 slot부분도 그렇고 v-model을 동적으로(함수나 +변수연산식)을 사용하니 @input없이도 자동 양방향 바인딩이 되었음. 뭐지..?  -->
   <div id="test">
     <loop
       :people="people"
@@ -21,11 +29,9 @@
         #input="{person : {id, uname, desc}}"
       >
         <div>
-          <input type="text" :value="uname"
-            @input="change(id, $event.target.value, 'uname')"
+          <input type="text" v-model="[...people].find(res => res.id === id).uname"
           >
-          <input type="text" :value="desc"
-            @input="change(id, $event.target.value, 'desc')"
+          <input type="text" v-model="[...people].find(res => res.id === id).desc"
           >
         </div>
       </template>
@@ -58,15 +64,6 @@
           {id : 4, uname : '유태균', desc : '유태균입니다.'}
         ]
       },
-      methods : {
-        change(id, v, type){
-          [...this.people].map(res => {
-            if(res.id === id){
-              res[type]=v
-            }
-          })
-        },
-      },
       components : {
         loop : {
           props : ['people'],
@@ -74,6 +71,60 @@
             <div>
               <slot v-for="person of people" :person="person" name="input">
               </slot>
+            </div>
+          `,
+        }
+      }
+    })
+  </script>
+
+
+  <!-- 단순 컴포넌트의 양방향 바인딩된 form 반복 -->
+  <div id="test2">
+    <loop 
+      :people="people"
+      @custom="change"
+    >
+    </loop>
+    <p>
+      {{people[0].uname}}, 
+      {{people[0].desc}}
+    </p>
+    <p>
+      {{people[1].uname}}, 
+      {{people[1].desc}}
+    </p>
+    <p>
+      {{people[2].uname}}, 
+      {{people[2].desc}}
+    </p>
+    <p>
+      {{people[3].uname}}, 
+      {{people[3].desc}}
+    </p>
+  </div>
+  <script>
+    new Vue({
+      el : '#test2',
+      data : {
+        people : [
+          {id : 1, uname : '김원빈', desc : '김원빈입니다.'},
+          {id : 2, uname : '정지찬', desc : '정지찬입니다.'},
+          {id : 3, uname : '김준성', desc : '김준성입니다.'},
+          {id : 4, uname : '유태균', desc : '유태균입니다.'}
+        ]
+      },
+      components : {
+        loop : {
+          props : ['people'],
+          template : `
+            <div>
+              <div v-for="{uname, desc, id} of people">
+                <input type="text" v-model="[...people].find(res => res.id === id).uname"
+                >
+                <input type="text" v-model="[...people].find(res => res.id === id).desc"
+                >
+              </div>
             </div>
           `,
         }
