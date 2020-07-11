@@ -18,10 +18,12 @@
 <body>
   <div id="selected">
     <input-check :data="video">
-      <div slot="inputWrap" slot-scope="{item, item : {name}, id}">
-        <input type="checkbox" slot="videoInput" :id="name" v-model="selected" :value="name">
-        <label :for="name" slot="videoLabel">{{name}}</label>
-      </div>
+      <template #inputwrap="{item, item : {name}, id}">
+        <div>
+          <input type="checkbox" :id="name" v-model="selected" :value="name">
+          <label :for="name">{{name}}</label>
+        </div>
+      </template>
     </input-check>
     <div v-if="videoLimit2.length !== 0">
       <!-- 하나라도 차면 옵션창 출력 -->

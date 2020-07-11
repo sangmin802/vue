@@ -68,9 +68,7 @@ new Vue({
       props : ['data'],
       template : `
       <div>
-        <slot name="inputWrap" v-for="(item, index) of data" :item="item" :id="index">
-          <slot name="videoInput"></slot>
-          <slot name="videoLabel"></slot>
+        <slot name="inputwrap" v-for="(item, index) of data" :item="item" :id="index">
         </slot>
       </div>
       `,

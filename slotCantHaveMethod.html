@@ -9,6 +9,10 @@
 <body>
   <!-- component화 할 때, slot은 메소드를 직접적으로 가질 수 없기 때문에, 부모의 영역에서 해당 slot으로 대체되는 부분에 메소드를 추가해서 사용해야한다. -->
   <!-- 그런데 여기서 input은 하위 컴포넌트의 slot으로 대체되기때문에, v-model은 먹히지 않으며, v-model을 풀어서사용한 :value와, @input이벤트를 사용해야한다.(사실상 이 둘은 자식컴포넌트에 있기때문에 이벤트방출을 해줘야 하는 것) -->
+
+
+  <!-- slot 쓰면 이벤트가 등록이 안되서 부모의 영역으로 와 이벤트 및 동적바인딩을 해주고, slot 안쓰면 컴포넌트의 템플릿 내부 태그에서 이벤트를 실행시킬 수 있으므로 v-model를 사용해 값을 전달하는것같은데
+  솔직히 정확히 잘 모르겠음 짜증난다. -->
   <div id="test">
     <loop
       :people="people"
@@ -16,12 +20,14 @@
       <template
         #input="{person : {id, uname, desc}}"
       >
-        <input type="text" :value="uname"
-          @input="change(id, $event.target.value, 'uname')"
-        >
-        <input type="text" :value="desc"
-          @input="change(id, $event.target.value, 'desc')"
-        >
+        <div>
+          <input type="text" :value="uname"
+            @input="change(id, $event.target.value, 'uname')"
+          >
+          <input type="text" :value="desc"
+            @input="change(id, $event.target.value, 'desc')"
+          >
+        </div>
       </template>
     </loop>
     <p>
